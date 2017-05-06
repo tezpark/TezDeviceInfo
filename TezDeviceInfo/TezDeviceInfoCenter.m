@@ -33,11 +33,16 @@ static NSString * const kKeyPushToken = @"pushToken";
 }
 
 #pragma mark - PushToken
-+ (void)setPushToken:(NSString *)pushToken {
-    if(pushToken == nil)
++ (void)setPushToken:(NSData *)deviceToken {
+    NSMutableString *tokenHex = [NSMutableString stringWithString:[deviceToken description]];
+    [tokenHex replaceOccurrencesOfString:@"<" withString:@"" options:0 range:NSMakeRange(0, [tokenHex length])];
+    [tokenHex replaceOccurrencesOfString:@">" withString:@"" options:0 range:NSMakeRange(0, [tokenHex length])];
+    [tokenHex replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [tokenHex length])];
+    
+    if(tokenHex == nil)
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyPushToken];
     else
-        [[NSUserDefaults standardUserDefaults] setObject:pushToken forKey:kKeyPushToken];
+        [[NSUserDefaults standardUserDefaults] setObject:tokenHex forKey:kKeyPushToken];
 }
 
 + (NSString *)pushToken {

@@ -28,7 +28,7 @@
 /**
  푸시 토큰을 저장. nil이면 remove한다.
  */
-+ (void)setPushToken:(NSString *)pushToken;
++ (void)setPushToken:(NSData *)deviceToken;
 
 /**
  푸시 토큰을 가져온다.
