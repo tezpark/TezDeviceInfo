@@ -3,14 +3,26 @@ Easily access device information
 * Will continue adding.
 
 
-#Usage
+# Usage
 ```objective-c
+// Get UUID
 NSLog(@"%@", [TezDeviceInfoCenter UUID]);
+
+
+
+// Set PushToken (Appdelegate.m)
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [TezDeviceInfoCenter setPushToken:deviceToken];
+}
+
+// Get PushToken
 NSLog(@"%@", [TezDeviceInfoCenter pushToken]);
 ```
 
 
-#License
+
+
+# License
 The MIT License (MIT)
 
 Copyright (c) 2017 Taesun Park
